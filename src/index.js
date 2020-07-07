@@ -1,0 +1,31 @@
+'use strict';
+
+require('../services/mongo')
+const Hapi = require('@hapi/hapi');
+const prodRouter = require('../routers/produto')
+const ProviderRouter = require('../routers/provider')
+const CategorieRouter = require('../routers/categoria')
+
+
+const init = async () => {
+
+    const server = Hapi.server({
+        port: 3001,
+        host: 'localhost'
+    });
+
+    server.route(prodRouter),
+    server.route(ProviderRouter),
+    server.route(CategorieRouter)
+
+    await server.start();
+    console.log('Server running on %s', server.info.uri);
+};
+
+process.on('unhandledRejection', (err) => {
+
+    console.log(err);
+    process.exit(1);
+});
+
+init();
