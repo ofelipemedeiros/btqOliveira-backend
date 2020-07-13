@@ -18,7 +18,9 @@
   "license": "ISC",
   "dependencies": {
     "@hapi/hapi": "^19.1.1",
-    "mongoose": "^5.9.14"
+    "knex": "^0.21.2",
+    "mongoose": "^5.9.14",
+    "mysql2": "^2.1.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.4"
