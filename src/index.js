@@ -1,9 +1,8 @@
 'use strict';
 
-require('../services/mongo')
+require('../services/dbknex')
 const Hapi = require('@hapi/hapi');
-const prodRouter = require('../routers/produto')
-const ProviderRouter = require('../routers/provider')
+const providerRouter = require('../routers/provider')
 const CategorieRouter = require('../routers/categoria')
 
 
@@ -14,8 +13,7 @@ const init = async () => {
         host: 'localhost'
     });
 
-    server.route(prodRouter),
-    server.route(ProviderRouter),
+    server.route(providerRouter)
     server.route(CategorieRouter)
 
     await server.start();

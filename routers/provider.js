@@ -30,9 +30,11 @@ module.exports = [
             cors: true
         }
     },
+    /**
     {
         method: 'PATCH',
         path: '/api/v1/provider/{id}',
         handler: ProviderHandler.update
     }
+     */
 ]

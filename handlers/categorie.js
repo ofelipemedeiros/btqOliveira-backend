@@ -1,33 +1,41 @@
-const CategoriaSchema = require('../models/cagorie')
+var database = require('../services/dbknex')
 
 const getAll = async (req, h) => {
-    const categories = await CategoriaSchema.find({})
-    return categories
-}
+    const listCategoria = await database.select().from("categoria")
+    return listCategoria
 
+}
 const find = async (req, h) => {
-    const categories = await CategoriaSchema.findById(req.params.id)
-    return categories
+
 }
 
-const save = async (req, h) => {
-    const {nome} = req.payload;
-    const categoria = new CategoriaSchema
-    categoria.nome = nome
+const save = async (req, h ) => {
+    const {nome, descricao} = req.payload;
+    const categoria = {
+        nome: nome,
+        descricao: descricao
+    }
+    
     try {
-        await categoria.save()
+        await database.insert(categoria).into("categoria")
         return h.response(categoria).code(201)
+    } catch (error) {
+        
+    }
+    
+    
+
+}
+
+const remove = async(req, h ) => {
+    try {
+        await database.where({idcategoria: req.params.id}).delete().table("categoria")
+        return h.response("registro deletado!")
     } catch (error) {
         console.log(error);
         
-        
     }
-
-}
-
-const remove = async (req, h) => {
-    await CategoriaSchema.findOneAndDelete({_id: req.params.id})
-    return h.response().code(204)
+    
 
 }
 
@@ -36,7 +44,4 @@ module.exports = {
     find,
     save,
     remove
-
 }
-
-
