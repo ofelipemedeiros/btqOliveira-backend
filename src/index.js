@@ -4,6 +4,7 @@ require('../services/dbknex')
 const Hapi = require('@hapi/hapi');
 const providerRouter = require('../routers/provider')
 const CategorieRouter = require('../routers/categoria')
+const prodRouter = require('../routers/produto')
 
 
 const init = async () => {
@@ -15,6 +16,7 @@ const init = async () => {
 
     server.route(providerRouter)
     server.route(CategorieRouter)
+    server.route(prodRouter)
 
     await server.start();
     console.log('Server running on %s', server.info.uri);

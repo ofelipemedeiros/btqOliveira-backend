@@ -1,4 +1,4 @@
-const productHandler = require('../handlers/Produto')
+const productHandler = require('../handlers/product')
 
 
 module.exports = [
